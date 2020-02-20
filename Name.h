@@ -14,8 +14,8 @@ private:
 
 public:
    // Constructors
-   Name(string _first = "<first name null>",
-        string _last = "<last name null>");
+   Name(string _first = "<null>",
+        string _last = "<null>");
 
    // Accessors
    const string getFirst();
@@ -28,6 +28,8 @@ public:
    void setLast(string &_last);
 
    // File I/O
-   void write(ofstream &_outFile);
-   void read(ifstream &_inFile);
+   bool write_binary(ofstream &_outFile);
+   bool write_JSON(ofstream &_outFile);
+   bool read_binary(ifstream &_inFile);
+   bool read_JSON(ifstream &_inFile);
 };

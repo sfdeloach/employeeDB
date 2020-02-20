@@ -7,15 +7,15 @@ using namespace std;
 
 int main()
 {
-   ofstream outFile("database.txt", ios_base::binary);
+   ofstream outFile("database.bin", ios_base::binary);
    Name steven("Steven", "DeLoach");
-   steven.write(outFile);
+   steven.write_binary(outFile);
    outFile.close();
 
-   ifstream inFile("database.txt", ios_base::binary);
+   ifstream inFile("database.bin", ios_base::binary);
    Name unknown;
    cout << unknown.getFirstLastName() << endl;
-   unknown.read(inFile);
+   unknown.read_binary(inFile);
    cout << unknown.getFirstLastName() << endl;
    inFile.close();
 

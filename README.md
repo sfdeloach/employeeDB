@@ -1,5 +1,6 @@
 # employeeDB
-Keep track of an employee's history
+
+Keep track of an employee's work history
 
 ## Overview
 
