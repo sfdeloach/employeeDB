@@ -20,8 +20,8 @@ public:
    // Accessors
    const string getFirst();
    const string getLast();
-   const string getFirstLastName();
-   const string getLastFirstName();
+   const string getFirstLast();
+   const string getLastFirst();
 
    // Mutators
    void setFirst(string &_first);
