@@ -1,9 +1,5 @@
-#include <iostream>
-#include <string>
 #include "Name.h"
 #include "functions.h"
-
-using std::string;
 
 /*=== Constructors ===========================================================*/
 
@@ -83,26 +79,31 @@ bool Name::read_binary(ifstream &_inFile)
       return false;
    }
 
-   char byteArray[sizeof(size_t)] = {0};
-   size_t stringLength;
+   size_t len;
+   _inFile.read((char *)len, sizeof(size_t));
+   char firstArray[len];
+   _inFile.read(firstArray, len);
+   first.assign(firstArray);
 
-   _inFile.read(byteArray, sizeof(size_t));
-   stringLength = 0;
-   if (byteToIntegral<size_t>(byteArray, sizeof(size_t), stringLength))
-   {
-      char firstNameArray[stringLength];
-      _inFile.read(firstNameArray, stringLength);
-      first.assign(firstNameArray);
-   }
+   // char byteArray[sizeof(size_t)] = {0};
 
-   _inFile.read(byteArray, sizeof(size_t));
-   stringLength = 0;
-   if (byteToIntegral<size_t>(byteArray, sizeof(size_t), stringLength))
-   {
-      char lastNameArray[stringLength];
-      _inFile.read(lastNameArray, stringLength);
-      last.assign(lastNameArray);
-   }
+   // _inFile.read(byteArray, sizeof(size_t));
+   // stringLength = 0;
+   // if (byteToIntegral<size_t>(byteArray, sizeof(size_t), stringLength))
+   // {
+      // char firstNameArray[stringLength];
+      // _inFile.read(firstNameArray, stringLength);
+      // first.assign(firstNameArray);
+   // }
+
+   // _inFile.read(byteArray, sizeof(size_t));
+   // stringLength = 0;
+   // if (byteToIntegral<size_t>(byteArray, sizeof(size_t), stringLength))
+   // {
+      // char lastNameArray[stringLength];
+      // _inFile.read(lastNameArray, stringLength);
+      // last.assign(lastNameArray);
+   // }
 
    return true;
 }

@@ -1,10 +1,14 @@
 #pragma once
+
+#include <iostream>
 #include <fstream>
 #include <string>
 
+using std::cerr;
 using std::ifstream;
 using std::ofstream;
 using std::string;
+using std::to_string;
 
 class Name
 {

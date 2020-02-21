@@ -1,8 +1,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "Date.h"
 #include "Name.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -21,14 +21,25 @@ int main()
    // inFile.close();
 
    Date today(2020, 2, 20);
-   Date epoch;
-   Date copy = today;
-   cout << "today: " << today.toISODate() << endl;
-   cout << "epoch: " << epoch.toISODate() << endl;
-   cout << "copy:  " << copy.toISODate() << endl;
 
-   copy.setDate(1976, 4, 12);
-   cout << "copy:  " << copy.toString() << endl;
+   ofstream outFile;
+   outFile.open("../db/store", ios_base::binary);
+   today.write_binary(outFile);
+   outFile.close();
+
+   ofstream outJSON;
+   outJSON.open("../db/store.json");
+   today.write_JSON(outJSON);
+   outJSON.close();
+
+   Date unknown;
+
+   ifstream inFile;
+   inFile.open("../db/store", ios_base::binary);
+   unknown.read_binary(inFile);
+   inFile.close();
+
+   cout << unknown.toString() << endl;
 
    return 0;
 }

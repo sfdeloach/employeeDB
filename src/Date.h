@@ -1,10 +1,15 @@
 #pragma once
+
+#include <iostream>
 #include <fstream>
 #include <string>
 
+using std::cerr;
+using std::endl;
 using std::ifstream;
 using std::ofstream;
 using std::string;
+using std::to_string;
 
 class Date
 {
@@ -12,6 +17,9 @@ private:
    unsigned short *year;
    unsigned char *month;
    unsigned char *day;
+
+   // Helper Functions
+   void _copy(const Date &_date);
 
 public:
    // Constructors/Destructor
@@ -22,8 +30,8 @@ public:
    ~Date();
 
    // Accessors
-   const string toISODate();
-   const string toString();
+   const string toISODate() const;
+   const string toString() const;
 
    // Mutators
    void setDate(unsigned short _year, unsigned char _month, unsigned char _day);
