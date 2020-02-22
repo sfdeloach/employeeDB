@@ -8,38 +8,38 @@ using namespace std;
 
 int main()
 {
-   // ofstream outFile("../db/store", ios_base::binary);
-   // Name steven("Steven", "DeLoach");
-   // steven.write_binary(outFile);
-   // outFile.close();
+   ofstream outFile("../db/store", ios_base::binary);
+   Name steven("Steven", "DeLoach");
+   steven.write_binary(outFile);
+   outFile.close();
 
-   // ifstream inFile("../db/store", ios_base::binary);
-   // Name unknown;
-   // cout << unknown.getLastFirst() << endl;
-   // unknown.read_binary(inFile);
-   // cout << unknown.getLastFirst() << endl;
-   // inFile.close();
+   ifstream inFile("../db/store", ios_base::binary);
+   Name unknown;
+   cout << unknown.getLastFirst() << endl;
+   unknown.read_binary(inFile);
+   cout << unknown.getLastFirst() << endl;
+   inFile.close();
 
    Date today(2020, 2, 20);
 
-   ofstream outFile;
-   outFile.open("../db/store", ios_base::binary);
+   ofstream outFile2;
+   outFile2.open("../db/store", ios_base::binary);
    today.write_binary(outFile);
-   outFile.close();
+   outFile2.close();
 
-   ofstream outJSON;
-   outJSON.open("../db/store.json");
-   today.write_JSON(outJSON);
-   outJSON.close();
+   ofstream outJSON2;
+   outJSON2.open("../db/store.json");
+   today.write_JSON(outJSON2);
+   outJSON2.close();
 
-   Date unknown;
+   Date unknownDate;
 
-   ifstream inFile;
-   inFile.open("../db/store", ios_base::binary);
-   unknown.read_binary(inFile);
-   inFile.close();
+   ifstream inFile2;
+   inFile2.open("../db/store", ios_base::binary);
+   unknownDate.read_binary(inFile);
+   inFile2.close();
 
-   cout << unknown.toString() << endl;
+   cout << unknownDate.toISODate() << endl;
 
    return 0;
 }

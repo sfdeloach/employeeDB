@@ -5,6 +5,8 @@
 #include <string>
 
 using std::cerr;
+using std::cout;
+using std::endl;
 using std::ifstream;
 using std::ofstream;
 using std::string;
@@ -33,7 +35,7 @@ public:
 
    // File I/O
    bool write_binary(ofstream &_outFile);
-   bool write_JSON(ofstream &_outFile);
    bool read_binary(ifstream &_inFile);
+   bool write_JSON(ofstream &_outFile);
    bool read_JSON(ifstream &_inFile);
 };

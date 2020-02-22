@@ -1,5 +1,4 @@
 #include "Date.h"
-#include "functions.h"
 
 /*=== Constructors/Destructor ================================================*/
 
@@ -85,7 +84,7 @@ bool Date::write_binary(ofstream &_outFile)
 {
    if (!_outFile.is_open())
    {
-      std::cerr << "unable to write to file, does db exist" << std::endl;
+      cerr << "unable to write to file, does db exist?" << endl;
       return false;
    }
 
@@ -98,6 +97,12 @@ bool Date::write_binary(ofstream &_outFile)
 
 bool Date::write_JSON(ofstream &_outFile)
 {
+   if (!_outFile.is_open())
+   {
+      cerr << "unable to write to file, does db exist?" << endl;
+      return false;
+   }
+
    _outFile << "{" << endl
             << "   \"Date\": {" << endl
             << "      \"year\": " << *year << "," << endl
@@ -105,17 +110,36 @@ bool Date::write_JSON(ofstream &_outFile)
             << "      \"day\": " << (unsigned short)*day << endl
             << "   }" << endl
             << "}" << endl;
+
+   return true;
 }
 
 bool Date::read_binary(ifstream &_inFile)
 {
+   if (!_inFile.is_open())
+   {
+      cerr << "unable to read from file, does db exist" << endl;
+      return false;
+   }
+
    _inFile.read((char *)year, sizeof(*year));
    _inFile.read((char *)month, sizeof(*month));
    _inFile.read((char *)day, sizeof(*day));
+
+   return true;
 }
 
 bool Date::read_JSON(ifstream &_inFile)
 {
+   if (!_inFile.is_open())
+   {
+      cerr << "unable to read from file, does db exist" << endl;
+      return false;
+   }
+
+   // TODO
+
+   return true;
 }
 
 /*=== Helper Functions =======================================================*/

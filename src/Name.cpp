@@ -1,5 +1,4 @@
 #include "Name.h"
-#include "functions.h"
 
 /*=== Constructors ===========================================================*/
 
@@ -54,19 +53,21 @@ bool Name::write_binary(ofstream &_outFile)
 {
    if (!_outFile.is_open())
    {
-      std::cerr << "unable to write to file, does db exist" << std::endl;
+      std::cerr << "unable to write to file, does db exist?" << std::endl;
       return false;
    }
 
+   size_t len;
+
    // length is string length plus one for null zero
-   size_t length = first.length() + 1;
-   _outFile.write((char *)&length, sizeof(size_t));
-   _outFile.write(first.c_str(), length);
+   len = first.length() + 1;
+   _outFile.write((char *)&len, sizeof(size_t));
+   _outFile.write(first.c_str(), len);
 
    // write size of last name and last name
-   length = last.length() + 1;
-   _outFile.write((char *)&length, sizeof(size_t));
-   _outFile.write(last.c_str(), length);
+   len = last.length() + 1;
+   _outFile.write((char *)&len, sizeof(size_t));
+   _outFile.write(last.c_str(), len);
 
    return true;
 }
@@ -80,30 +81,23 @@ bool Name::read_binary(ifstream &_inFile)
    }
 
    size_t len;
-   _inFile.read((char *)len, sizeof(size_t));
-   char firstArray[len];
-   _inFile.read(firstArray, len);
-   first.assign(firstArray);
+   char *charArray;
 
-   // char byteArray[sizeof(size_t)] = {0};
+   _inFile.read((char *)&len, sizeof(size_t));
+   charArray = new char[len];
+   _inFile.read(charArray, len);
 
-   // _inFile.read(byteArray, sizeof(size_t));
-   // stringLength = 0;
-   // if (byteToIntegral<size_t>(byteArray, sizeof(size_t), stringLength))
-   // {
-      // char firstNameArray[stringLength];
-      // _inFile.read(firstNameArray, stringLength);
-      // first.assign(firstNameArray);
-   // }
+   first.assign(charArray);
 
-   // _inFile.read(byteArray, sizeof(size_t));
-   // stringLength = 0;
-   // if (byteToIntegral<size_t>(byteArray, sizeof(size_t), stringLength))
-   // {
-      // char lastNameArray[stringLength];
-      // _inFile.read(lastNameArray, stringLength);
-      // last.assign(lastNameArray);
-   // }
+   delete[] charArray;
+
+   _inFile.read((char *)&len, sizeof(size_t));
+   charArray = new char[len];
+   _inFile.read(charArray, len);
+
+   last.assign(charArray);
+
+   delete[] charArray;
 
    return true;
 }
