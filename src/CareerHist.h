@@ -15,23 +15,39 @@ using std::to_string;
 
 class CareerHist
 {
+public:
+   enum Event
+   {
+      HIRED = 'H',
+      TRANSFERRED = 'T',
+      PROMOTED = 'P',
+      DEMOTED = 'D',
+      RESIGNED = 'S',
+      RETIRED = 'R',
+      OTHER = 'O',
+      NOT_SPECIFIED = 'X'
+   };
+
 private:
    Date date;
-   // Event event; <-- TODO!
+   Event event;
    string description;
    const string fileNotOpen = "unable to open store, does db directory exist?";
 
 public:
    // Constructor
-   CareerHist(Date _date = Date(1970, 1, 1), /*Event _evt,*/ string _desc = "");
+   CareerHist(Date _date = Date(1970, 1, 1),
+              Event _evt = NOT_SPECIFIED,
+              string _desc = "");
    CareerHist(const CareerHist &_careerhist);
 
    // Accessors
    const string toString() const;
+   const string getEvent() const;
 
    // Mutators
    void setDate(Date &_date);
-   // void setEvent (Event _evt); <-- TODO
+   void setEvent(Event _evt);
    void setDescription(const string &_desc);
 
    // Operator Overloads

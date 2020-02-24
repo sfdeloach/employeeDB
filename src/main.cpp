@@ -11,7 +11,7 @@ int main()
 {
    ofstream outFile("./db/store", ios_base::binary);
    Date date(2020, 2, 1);
-   CareerHist ch1(date, "Hire date");
+   CareerHist ch1(date, CareerHist::HIRED, "Hire date");
    ch1.write_binary(outFile);
    outFile.close();
 

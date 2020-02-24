@@ -2,15 +2,16 @@
 
 /*=== Constructor ============================================================*/
 
-CareerHist::CareerHist(Date _date, /*Event _evt,*/ string _desc) : date(_date),
-                                                                    /*event(_evt),*/
-                                                                    description(_desc)
+CareerHist::CareerHist(Date _date, Event _evt, string _desc) : date(_date),
+                                                               event(_evt),
+                                                               description(_desc)
 {
 }
 
 CareerHist::CareerHist(const CareerHist &_careerhist)
 {
    date = _careerhist.date;
+   event = _careerhist.event;
    description = _careerhist.description;
 }
 
@@ -19,11 +20,29 @@ CareerHist::CareerHist(const CareerHist &_careerhist)
 const string CareerHist::toString() const
 {
    string result;
-   result += "       Date: " + date.toISODate() + "\n";
-   result += "      Event: TODO!\n";
-   result += "Description: " + description + "\n";
+   result += "       Date: " + date.toISODate() + '\n';
+   result += "      Event: " + getEvent() + '\n';
+   result += "Description: " + description + '\n';
 
    return result;
+}
+
+const string CareerHist::getEvent() const
+{
+   switch (event)
+   {
+   case 'H':
+      return "Hired";
+   case 'T':
+      return "Transferred";
+   case 'P':
+      return "Promoted";
+      // TODO
+   default:
+      break;
+   }
+
+   return "Error";
 }
 
 /*=== Mutators ===============================================================*/
