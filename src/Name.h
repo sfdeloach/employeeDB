@@ -23,6 +23,7 @@ public:
    // Constructor
    Name(string _first = "<null>",
         string _last = "<null>");
+   Name(const Name &_name);
 
    // Accessors
    const string getFirst();
@@ -33,6 +34,9 @@ public:
    // Mutators
    void setFirst(string &_first);
    void setLast(string &_last);
+
+   // Operator Overloads
+   Name &operator=(const Name &_name);
 
    // File I/O
    bool write_binary(ofstream &_outFile);

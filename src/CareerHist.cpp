@@ -82,8 +82,8 @@ bool CareerHist::write_binary(ofstream &_outFile)
    // write date
    date.write_binary(_outFile);
 
-   // write event <-- TODO!
-   // event.write_binary(_outFile);
+   // write event
+   _outFile.write((const char *)&event, sizeof(event));
 
    // write description
    size_t len = description.length() + 1;
@@ -105,7 +105,8 @@ bool CareerHist::read_binary(ifstream &_inFile)
    // read date
    date.read_binary(_inFile);
 
-   // read event <-- TODO!
+   // read event
+   _inFile.read((char *)&event, sizeof(event));
 
    // read description
    size_t len;
@@ -130,7 +131,13 @@ bool CareerHist::write_JSON(ofstream &_outFile)
       return false;
    }
 
-   // TODO
+   _outFile << "{" << endl
+            << "   \"CareerHist\": {" << endl;
+   date.write_JSON(_outFile);
+   _outFile << "      \"Event\": " << event << "," << endl
+            << "      \"description\": \"" << description << "\"" << endl
+            << "   }" << endl
+            << "}" << endl;
 
    return true;
 }

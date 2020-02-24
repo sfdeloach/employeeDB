@@ -22,6 +22,11 @@ int main()
    cout << ch2.toString() << endl;
    ch2.read_binary(inFile);
    cout << ch2.toString() << endl;
+   inFile.close();
+
+   ofstream outJSON("./db/store.json", ios_base::binary);
+   ch2.write_JSON(outJSON);
+   outJSON.close();
 
    // ofstream outFile("./db/store", ios_base::binary);
    // Name steven("Steven", "DeLoach");

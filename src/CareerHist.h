@@ -35,7 +35,7 @@ private:
    const string fileNotOpen = "unable to open store, does db directory exist?";
 
 public:
-   // Constructor
+   // Constructors
    CareerHist(Date _date = Date(1970, 1, 1),
               Event _evt = NOT_SPECIFIED,
               string _desc = "");

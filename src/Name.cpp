@@ -4,6 +4,12 @@
 
 Name::Name(string _first, string _last) : first(_first), last(_last) {}
 
+Name::Name(const Name &_name)
+{
+   first = _name.first;
+   last = _name.last;
+}
+
 /*=== Accessors ==============================================================*/
 
 const string Name::getFirst()
@@ -36,6 +42,16 @@ void Name::setFirst(string &_first)
 void Name::setLast(string &_last)
 {
    last = _last;
+}
+
+/*=== Operator Overloads =====================================================*/
+
+Name &Name::operator=(const Name &_name)
+{
+   first = _name.first;
+   last = _name.last;
+
+   return *this;
 }
 
 /*=== File I/O ===============================================================*/

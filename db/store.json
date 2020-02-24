@@ -1,6 +1,11 @@
 {
-   "Name": {
-      "first": "Steven",
-      "last": "DeLoach"
+   "CareerHist": {
+      "Date": {
+         "year": 2020,
+         "month": 2,
+         "day": 1
+      },
+      "Event": 72,
+      "description": "Hire date"
    }
 }

@@ -122,7 +122,7 @@ bool Date::write_JSON(ofstream &_outFile)
             << "         \"year\": " << *year << "," << endl
             << "         \"month\": " << (unsigned short)*month << "," << endl
             << "         \"day\": " << (unsigned short)*day << endl
-            << "      }" << endl;
+            << "      }," << endl;
 
    return true;
 }
