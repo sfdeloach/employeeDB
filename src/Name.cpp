@@ -1,6 +1,6 @@
 #include "Name.h"
 
-/*=== Constructors ===========================================================*/
+/*=== Constructor ============================================================*/
 
 Name::Name(string _first, string _last) : first(_first), last(_last) {}
 
@@ -53,7 +53,7 @@ bool Name::write_binary(ofstream &_outFile)
 {
    if (!_outFile.is_open())
    {
-      std::cerr << "unable to write to file, does db exist?" << std::endl;
+      cerr << fileNotOpen << endl;
       return false;
    }
 
@@ -76,7 +76,7 @@ bool Name::read_binary(ifstream &_inFile)
 {
    if (!_inFile.is_open())
    {
-      std::cerr << "unable to read from store, does db exist?" << std::endl;
+      cerr << fileNotOpen << endl;
       return false;
    }
 
@@ -98,6 +98,22 @@ bool Name::read_binary(ifstream &_inFile)
    last.assign(charArray);
 
    delete[] charArray;
+
+   return true;
+}
+
+bool Name::write_JSON(ofstream &_outFile)
+{
+   if (!_outFile)
+   {
+      cerr << fileNotOpen << endl;
+      return false;
+   }
+
+   _outFile << "   \"Name\": {" << endl
+            << "      \"first\": \"" << first << "\"," << endl
+            << "      \"last\": \"" << last << "\"" << endl
+            << "   }" << endl;
 
    return true;
 }

@@ -18,8 +18,9 @@ private:
    unsigned short *year;
    unsigned char *month;
    unsigned char *day;
+   const string fileNotOpen = "unable to open store, does db directory exist?";
 
-   // Helper Functions
+   // Helper Function
    void _copy(const Date &_date);
 
 public:
@@ -27,7 +28,7 @@ public:
    Date(unsigned short _year = 1970,
         unsigned char _month = 1,
         unsigned char _day = 1);
-   Date(const Date &date);
+   Date(const Date &_date);
    ~Date();
 
    // Accessors
@@ -39,11 +40,10 @@ public:
    void clear();
 
    // Operator Overloads
-   Date &operator=(const Date &date);
+   Date &operator=(const Date &_date);
 
    // File I/O
    bool write_binary(ofstream &_outFile);
-   bool write_JSON(ofstream &_outFile);
    bool read_binary(ifstream &_inFile);
-   bool read_JSON(ifstream &_inFile);
+   bool write_JSON(ofstream &_outFile);
 };

@@ -16,9 +16,9 @@ Date::Date(unsigned short _year,
    *day = _day;
 }
 
-Date::Date(const Date &date)
+Date::Date(const Date &_date)
 {
-   _copy(date);
+   _copy(_date);
 }
 
 Date::~Date()
@@ -84,7 +84,7 @@ bool Date::write_binary(ofstream &_outFile)
 {
    if (!_outFile.is_open())
    {
-      cerr << "unable to write to file, does db exist?" << endl;
+      cerr << fileNotOpen << endl;
       return false;
    }
 
@@ -95,30 +95,11 @@ bool Date::write_binary(ofstream &_outFile)
    return true;
 }
 
-bool Date::write_JSON(ofstream &_outFile)
-{
-   if (!_outFile.is_open())
-   {
-      cerr << "unable to write to file, does db exist?" << endl;
-      return false;
-   }
-
-   _outFile << "{" << endl
-            << "   \"Date\": {" << endl
-            << "      \"year\": " << *year << "," << endl
-            << "      \"month\": " << (unsigned short)*month << "," << endl
-            << "      \"day\": " << (unsigned short)*day << endl
-            << "   }" << endl
-            << "}" << endl;
-
-   return true;
-}
-
 bool Date::read_binary(ifstream &_inFile)
 {
    if (!_inFile.is_open())
    {
-      cerr << "unable to read from file, does db exist" << endl;
+      cerr << fileNotOpen << endl;
       return false;
    }
 
@@ -129,20 +110,24 @@ bool Date::read_binary(ifstream &_inFile)
    return true;
 }
 
-bool Date::read_JSON(ifstream &_inFile)
+bool Date::write_JSON(ofstream &_outFile)
 {
-   if (!_inFile.is_open())
+   if (!_outFile.is_open())
    {
-      cerr << "unable to read from file, does db exist" << endl;
+      cerr << fileNotOpen << endl;
       return false;
    }
 
-   // TODO
+   _outFile << "      \"Date\": {" << endl
+            << "         \"year\": " << *year << "," << endl
+            << "         \"month\": " << (unsigned short)*month << "," << endl
+            << "         \"day\": " << (unsigned short)*day << endl
+            << "      }" << endl;
 
    return true;
 }
 
-/*=== Helper Functions =======================================================*/
+/*=== Helper Function =i=======================================================*/
 
 void Date::_copy(const Date &_date)
 {

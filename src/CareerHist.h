@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Date.h"
 
 using std::cerr;
 using std::cout;
@@ -12,27 +13,29 @@ using std::ofstream;
 using std::string;
 using std::to_string;
 
-class Name
+class CareerHist
 {
 private:
-   string first;
-   string last;
+   Date date;
+   // Event event; <-- TODO!
+   string description;
    const string fileNotOpen = "unable to open store, does db directory exist?";
 
 public:
    // Constructor
-   Name(string _first = "<null>",
-        string _last = "<null>");
+   CareerHist(Date _date = Date(1970, 1, 1), /*Event _evt,*/ string _desc = "");
+   CareerHist(const CareerHist &_careerhist);
 
    // Accessors
-   const string getFirst();
-   const string getLast();
-   const string getFirstLast();
-   const string getLastFirst();
+   const string toString() const;
 
    // Mutators
-   void setFirst(string &_first);
-   void setLast(string &_last);
+   void setDate(Date &_date);
+   // void setEvent (Event _evt); <-- TODO
+   void setDescription(const string &_desc);
+
+   // Operator Overloads
+   CareerHist &operator=(const CareerHist &_careerhist);
 
    // File I/O
    bool write_binary(ofstream &_outFile);

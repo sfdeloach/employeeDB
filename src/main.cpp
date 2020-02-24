@@ -3,22 +3,41 @@
 #include <string>
 #include "Name.h"
 #include "Date.h"
+#include "CareerHist.h"
 
 using namespace std;
 
 int main()
 {
    ofstream outFile("./db/store", ios_base::binary);
-   Name steven("Steven", "DeLoach");
-   steven.write_binary(outFile);
+   Date date(2020, 2, 1);
+   CareerHist ch1(date, "Hire date");
+   ch1.write_binary(outFile);
    outFile.close();
 
+   cout << ch1.toString() << endl;
+
    ifstream inFile("./db/store", ios_base::binary);
-   Name unknown;
-   cout << unknown.getLastFirst() << endl;
-   unknown.read_binary(inFile);
-   cout << unknown.getLastFirst() << endl;
-   inFile.close();
+   CareerHist ch2;
+   cout << ch2.toString() << endl;
+   ch2.read_binary(inFile);
+   cout << ch2.toString() << endl;
+
+   // ofstream outFile("./db/store", ios_base::binary);
+   // Name steven("Steven", "DeLoach");
+   // steven.write_binary(outFile);
+   // outFile.close();
+
+   // ifstream inFile("./db/store", ios_base::binary);
+   // Name unknown;
+   // cout << unknown.getLastFirst() << endl;
+   // unknown.read_binary(inFile);
+   // cout << unknown.getLastFirst() << endl;
+   // inFile.close();
+
+   // ofstream outJSON("./db/store.json");
+   // unknown.write_JSON(outJSON);
+   // outJSON.close();
 
    // Date today(2020, 2, 20);
 
