@@ -14,11 +14,6 @@ using std::to_string;
 
 class Name
 {
-private:
-   string first;
-   string last;
-   const string fileNotOpen = "unable to open store, does db directory exist?";
-
 public:
    // Constructor
    Name(string _first = "<null>",
@@ -26,14 +21,14 @@ public:
    Name(const Name &_name);
 
    // Accessors
-   const string getFirst();
-   const string getLast();
-   const string getFirstLast();
-   const string getLastFirst();
+   const string getFirst() const;
+   const string getLast() const;
+   const string getFirstLast() const;
+   const string getLastFirst() const;
 
    // Mutators
-   void setFirst(string &_first);
-   void setLast(string &_last);
+   void setFirst(const string &_first);
+   void setLast(const string &_last);
 
    // Operator Overloads
    Name &operator=(const Name &_name);
@@ -42,4 +37,9 @@ public:
    bool write_binary(ofstream &_outFile);
    bool read_binary(ifstream &_inFile);
    bool write_JSON(ofstream &_outFile);
+
+private:
+   string first;
+   string last;
+   const string fileNotOpen = "unable to open store, does db directory exist?";
 };

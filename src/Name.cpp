@@ -12,34 +12,34 @@ Name::Name(const Name &_name)
 
 /*=== Accessors ==============================================================*/
 
-const string Name::getFirst()
+const string Name::getFirst() const
 {
    return first;
 }
 
-const string Name::getLast()
+const string Name::getLast() const
 {
    return last;
 }
 
-const string Name::getFirstLast()
+const string Name::getFirstLast() const
 {
    return string(first + " " + last);
 }
 
-const string Name::getLastFirst()
+const string Name::getLastFirst() const
 {
    return string(last + ", " + first);
 }
 
 /*=== Mutators ===============================================================*/
 
-void Name::setFirst(string &_first)
+void Name::setFirst(const string &_first)
 {
    first = _first;
 }
 
-void Name::setLast(string &_last)
+void Name::setLast(const string &_last)
 {
    last = _last;
 }

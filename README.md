@@ -19,9 +19,9 @@ vector<Employee>
    deptID (unsigned short)
    CareerHist[] (class array)
       Date (class)
-         day (unsigned char)
-         month (unsigned char)
-         year (unsigned short)
+         *year (pointer to a unsigned short)
+         *month (pointer to a unsigned char)
+         *day (pointer to a unsigned char)
       Event (enum)
          HIRED, RETIRED, RESIGNED, PROMOTED, DEMOTED, TRANSFERRED, OTHER
       description (string)

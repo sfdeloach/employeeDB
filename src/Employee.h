@@ -16,23 +16,24 @@ using std::to_string;
 
 class Employee
 {
-private:
-   Name name;
-   unsigned short deptID;
-   CareerHist *careerHist;
-   unsigned long histLength;
-
 public:
    // Constructors/Destructor
-   Employee(Name _name = Name("<null>", "<null>"), unsigned short _deptID = 0);
+   Employee(string _last = "unknown",
+            string _first = "unknown",
+            unsigned short _deptID = 0);
    Employee(const Employee &_employee);
+   ~Employee();
 
    // Accessors
    const string toString() const;
-   const Employee &findByID(const unsigned short _id) const;
+   const Name getName() const;
+   unsigned short getDeptID() const;
+   const CareerHist *getCareerHist() const;
 
    // Mutators
-   bool addCareerHist(CareerHist &_careerHist);
+   void setName(string _last, string _first);
+   void setDeptID(unsigned short _id);
+   void addCareerHist(CareerHist &_careerHist);
 
    // Operator Overloads
    Employee &operator=(const Employee &_employee);
@@ -41,4 +42,13 @@ public:
    bool write_binary(ofstream &_outFile);
    bool read_binary(ifstream &_inFile);
    bool write_JSON(ofstream &_outFile);
+
+private:
+   Name name;
+   unsigned short deptID;
+   CareerHist *careerHist;
+   unsigned long histLength;
+   const string fileNotOpen = "unable to open store, does db directory exist?";
+
+   void _copy(const Employee &_employee);
 };

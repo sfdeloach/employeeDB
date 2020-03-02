@@ -14,15 +14,6 @@ using std::to_string;
 
 class Date
 {
-private:
-   unsigned short *year;
-   unsigned char *month;
-   unsigned char *day;
-   const string fileNotOpen = "unable to open store, does db directory exist?";
-
-   // Helper Function
-   void _copy(const Date &_date);
-
 public:
    // Constructors/Destructor
    Date(unsigned short _year = 1970,
@@ -46,4 +37,17 @@ public:
    bool write_binary(ofstream &_outFile);
    bool read_binary(ifstream &_inFile);
    bool write_JSON(ofstream &_outFile);
+
+private:
+   unsigned short *year;
+   unsigned char *month;
+   unsigned char *day;
+
+   const string fileNotOpen = "unable to open store, does db directory exist?";
+   const string months[12] = {"January ", "February ", "March ", "April ",
+                              "May ", "June ", "July ", "August ",
+                              "September ", "October ", "November ", "December "};
+
+   // Helper Function
+   void _copy(const Date &_date);
 };

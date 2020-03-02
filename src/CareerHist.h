@@ -28,13 +28,6 @@ public:
       NOT_SPECIFIED = 'X'
    };
 
-private:
-   Date date;
-   Event event;
-   string description;
-   const string fileNotOpen = "unable to open store, does db directory exist?";
-
-public:
    // Constructors
    CareerHist(Date _date = Date(1970, 1, 1),
               Event _evt = NOT_SPECIFIED,
@@ -47,6 +40,7 @@ public:
 
    // Mutators
    void setDate(Date &_date);
+   void setDate(unsigned short _y, unsigned char _m, unsigned char _d);
    void setEvent(Event _evt);
    void setDescription(const string &_desc);
 
@@ -57,4 +51,10 @@ public:
    bool write_binary(ofstream &_outFile);
    bool read_binary(ifstream &_inFile);
    bool write_JSON(ofstream &_outFile);
+
+private:
+   Date date;
+   Event event;
+   string description;
+   const string fileNotOpen = "unable to open store, does db directory exist?";
 };

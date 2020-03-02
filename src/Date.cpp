@@ -2,6 +2,7 @@
 
 /*=== Constructors/Destructor ================================================*/
 
+// default constructor
 Date::Date(unsigned short _year,
            unsigned char _month,
            unsigned char _day)
@@ -16,11 +17,13 @@ Date::Date(unsigned short _year,
    *day = _day;
 }
 
+// copy constructor
 Date::Date(const Date &_date)
 {
    _copy(_date);
 }
 
+// destructor
 Date::~Date()
 {
    clear();
@@ -38,10 +41,6 @@ const string Date::toISODate() const
 
 const string Date::toString() const
 {
-   string months[] = {"January ", "February ", "March ", "April ",
-                      "May ", "June ", "July ", "August ",
-                      "September ", "October ", "November ", "December "};
-
    return months[*month - 1] + to_string(*day) + ", " + to_string(*year);
 }
 

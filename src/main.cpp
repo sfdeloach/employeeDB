@@ -1,32 +1,54 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "Name.h"
-#include "Date.h"
-#include "CareerHist.h"
+#include "Employee.h"
 
 using namespace std;
 
 int main()
 {
-   ofstream outFile("./db/store", ios_base::binary);
-   Date date(2020, 2, 1);
-   CareerHist ch1(date, CareerHist::HIRED, "Hire date");
-   ch1.write_binary(outFile);
-   outFile.close();
+   Employee e("Hooking-Machine", "Officer", 100);
+   e.setName("DeLoach", "Steven");
+   e.setDeptID(531);
+   CareerHist ch;
+   ch.setDate(2004, 9, 13);
+   ch.setEvent(CareerHist::HIRED);
+   e.addCareerHist(ch);
+   ch.setDate(2006, 9, 25);
+   ch.setEvent(CareerHist::PROMOTED);
+   ch.setDescription("Patrol Officer 1st Class");
+   e.addCareerHist(ch);
+   cout << e.toString();
 
-   cout << ch1.toString() << endl;
+   Employee f = e;
+   f.setName("Federico", "Esteban");
+   cout << f.toString();
 
-   ifstream inFile("./db/store", ios_base::binary);
-   CareerHist ch2;
-   cout << ch2.toString() << endl;
-   ch2.read_binary(inFile);
-   cout << ch2.toString() << endl;
-   inFile.close();
+   Employee g;
+   g = e;
+   cout << g.toString();
 
-   ofstream outJSON("./db/store.json", ios_base::binary);
-   ch2.write_JSON(outJSON);
-   outJSON.close();
+   const CareerHist *hist = g.getCareerHist();
+   cout << (*(hist + 1)).toString() << endl;
+
+   // ofstream outFile("./db/store", ios_base::binary);
+   // Date date(2020, 2, 1);
+   // CareerHist ch1(date, CareerHist::HIRED, "Hire date");
+   // ch1.write_binary(outFile);
+   // outFile.close();
+
+   // cout << ch1.toString() << endl;
+
+   // ifstream inFile("./db/store", ios_base::binary);
+   // CareerHist ch2;
+   // cout << ch2.toString() << endl;
+   // ch2.read_binary(inFile);
+   // cout << ch2.toString() << endl;
+   // inFile.close();
+
+   // ofstream outJSON("./db/store.json", ios_base::binary);
+   // ch2.write_JSON(outJSON);
+   // outJSON.close();
 
    // ofstream outFile("./db/store", ios_base::binary);
    // Name steven("Steven", "DeLoach");

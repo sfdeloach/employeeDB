@@ -19,12 +19,7 @@ CareerHist::CareerHist(const CareerHist &_careerhist)
 
 const string CareerHist::toString() const
 {
-   string result;
-   result += "       Date: " + date.toISODate() + '\n';
-   result += "      Event: " + getEvent() + '\n';
-   result += "Description: " + description + '\n';
-
-   return result;
+   return date.toISODate() + ", " + getEvent() + ", " + description;
 }
 
 const string CareerHist::getEvent() const
@@ -37,7 +32,16 @@ const string CareerHist::getEvent() const
       return "Transferred";
    case 'P':
       return "Promoted";
-      // TODO
+   case 'D':
+      return "Demoted";
+   case 'S':
+      return "Resigned";
+   case 'R':
+      return "Retired";
+   case 'O':
+      return "Other";
+   case 'X':
+      return "Not specified";
    default:
       break;
    }
@@ -52,7 +56,16 @@ void CareerHist::setDate(Date &_date)
    date = _date;
 }
 
-// void CareerHist::setEvent (Event _evt); <-- TODO
+void CareerHist::setDate(unsigned short _y, unsigned char _m, unsigned char _d)
+{
+   Date _date(_y, _m, _d);
+   date = _date;
+}
+
+void CareerHist::setEvent(Event _evt)
+{
+   event = _evt;
+}
 
 void CareerHist::setDescription(const string &_desc)
 {
@@ -64,6 +77,7 @@ void CareerHist::setDescription(const string &_desc)
 CareerHist &CareerHist::operator=(const CareerHist &_careerhist)
 {
    date = _careerhist.date;
+   event = _careerhist.event;
    description = _careerhist.description;
 
    return *this;
